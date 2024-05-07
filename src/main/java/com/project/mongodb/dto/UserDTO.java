@@ -44,5 +44,12 @@ public class UserDTO implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public static User fromDTO(UserDTO userDTO) {
+		
+		User user = new User(userDTO.getId(),userDTO.getName(),userDTO.getEmail());
+		
+		return user;
+	}
 
 }

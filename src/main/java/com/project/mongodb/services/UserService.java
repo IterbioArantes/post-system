@@ -25,4 +25,23 @@ public class UserService {
 		Optional<User> user = userRepository.findById(id);
 		return user.orElseThrow(() -> new ObjectNotFoundException(id));
 	}
+	
+	public User insert(User user) {
+		return userRepository.save(user);
+	}
+	
+	public void delete(String id) {
+		findById(id);
+		userRepository.deleteById(id);
+	}
+	
+	public User update(String id, User user) {
+
+		User userToUpdate = findById(id);
+		
+		userToUpdate.setName(user.getName());
+		userToUpdate.setEmail(user.getEmail());
+		
+		return userRepository.save(userToUpdate);
+	}
 }
