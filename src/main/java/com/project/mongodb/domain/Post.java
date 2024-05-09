@@ -1,11 +1,14 @@
 package com.project.mongodb.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.project.mongodb.dto.AuthorDTO;
+import com.project.mongodb.dto.CommentDTO;
 
 @Document
 public class Post {
@@ -15,6 +18,8 @@ public class Post {
 	private String title;
 	private String body;
 	private AuthorDTO author;
+	
+	private List<CommentDTO> comments = new ArrayList<>();
 
 	public Post() {
 	}
@@ -67,6 +72,14 @@ public class Post {
 	public void setAuthor(AuthorDTO author) {
 		this.author = author;
 	}
+	
+	public List<CommentDTO> getcomments() {
+		return comments;
+	}
+
+	public void setcomments(List<CommentDTO> comments) {
+		this.comments = comments;
+	}
 
 	@Override
 	public int hashCode() {
@@ -84,7 +97,4 @@ public class Post {
 		Post other = (Post) obj;
 		return Objects.equals(id, other.id);
 	}
-
-	
-
 }

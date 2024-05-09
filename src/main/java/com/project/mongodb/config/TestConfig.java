@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Profile;
 import com.project.mongodb.domain.Post;
 import com.project.mongodb.domain.User;
 import com.project.mongodb.dto.AuthorDTO;
+import com.project.mongodb.dto.CommentDTO;
 import com.project.mongodb.repositories.PostRepository;
 import com.project.mongodb.repositories.UserRepository;
 
@@ -41,6 +42,14 @@ public class TestConfig implements CommandLineRunner{
 		
 		Post post1 = new Post(null, LocalDate.parse("21/03/2018",dtf), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(iterbio));
 		Post post2 = new Post(null, LocalDate.parse("23/03/2018",dtf), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(iterbio));
+		
+		CommentDTO c1 = new CommentDTO("Boa viagem mano!", LocalDate.parse("21/03/2018",dtf),new AuthorDTO(jessica));
+		CommentDTO c2 = new CommentDTO("Aproveite!", LocalDate.parse("22/03/2018",dtf),new AuthorDTO(nina));
+		CommentDTO c3 = new CommentDTO("Tenha um ótimo dia!", LocalDate.parse("21/03/2018",dtf),new AuthorDTO(jessica));
+		
+		post1.getcomments().add(c1);
+		post1.getcomments().add(c2);
+		post2.getcomments().add(c3);
 		
 		postRepository.saveAll(Arrays.asList(post1,post2));
 		
